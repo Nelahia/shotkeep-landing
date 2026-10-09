@@ -77,8 +77,8 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div class="disp" style="font-size: 20px">ShotNest</div>
 </a>
-<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotkeep">GitHub</a></div>
-<a class="bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotkeep/releases/latest/download/ShotKeep.dmg">Download</a>
+<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotnest">GitHub</a></div>
+<a class="bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotnest/releases/latest/download/ShotNest.dmg">Download</a>
 </div>
 
 <div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 48px">
@@ -86,7 +86,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #6F7D87">Kept.</span></h1>
 <p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotNest sits in your menu bar and catches every screenshot macOS takes, whether full screen, selection or clipboard. Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 6px">
-<a class="bp" href="https://github.com/Nelahia/shotkeep/releases/latest/download/ShotKeep.dmg">Download ShotKeep.dmg</a>
+<a class="bp" href="https://github.com/Nelahia/shotnest/releases/latest/download/ShotNest.dmg">Download ShotNest.dmg</a>
 <a class="bs" href="#install">Install with Homebrew</a>
 </div>
 <div class="mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · free and open source · no telemetry</div>
@@ -322,10 +322,10 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div class="card" style="width: 100%; max-width: 460px; box-sizing: border-box; gap: 14px; padding: 28px">
 <div style="display: flex; align-items: baseline; gap: 10px"><div class="disp" style="font-size: 44px">$0</div><div style="color: #9AA8B1; font-size: 14px">forever, MIT licensed</div></div>
-<a class="bp" style="height: 48px" href="https://github.com/Nelahia/shotkeep/releases/latest/download/ShotKeep.dmg">Download ShotKeep.dmg</a>
+<a class="bp" style="height: 48px" href="https://github.com/Nelahia/shotnest/releases/latest/download/ShotNest.dmg">Download ShotNest.dmg</a>
 <div class="mono" style="font-size: 12px; color: #7C8A94; text-align: center">or with Homebrew</div>
 <div style="display: flex; align-items: center; gap: 10px; background: #0A0D0F; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); padding: 6px 6px 6px 14px">
-<div class="mono" style="flex: 1; min-width: 0; font-size: 12px; overflow-x: auto; white-space: nowrap; padding: 6px 0">brew tap nelahia/tap &amp;&amp; brew install --cask shotkeep</div>
+<div class="mono" style="flex: 1; min-width: 0; font-size: 12px; overflow-x: auto; white-space: nowrap; padding: 6px 0">brew tap nelahia/tap &amp;&amp; brew install --cask shotnest</div>
 <button id="copy-brew" type="button" style="height: 36px; padding: 0 12px; border-radius: 7px; background: rgba(255,255,255,.1); font-size: 13px; font-weight: 600; flex: none">Copy</button>
 </div>
 <div class="mono" style="font-size: 12px; color: #7C8A94; text-align: center">Requires macOS 14.0 (Sonoma) or later</div>
@@ -334,9 +334,9 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #9AA8B1">
 <div style="display: flex; flex-wrap: wrap; gap: 8px 22px">
-<a href="https://github.com/Nelahia/shotkeep">GitHub</a>
-<a href="https://github.com/Nelahia/shotkeep/releases">Releases</a>
-<a href="https://github.com/Nelahia/shotkeep/blob/main/README.md#license">MIT License</a>
+<a href="https://github.com/Nelahia/shotnest">GitHub</a>
+<a href="https://github.com/Nelahia/shotnest/releases">Releases</a>
+<a href="https://github.com/Nelahia/shotnest/blob/main/README.md#license">MIT License</a>
 <a href="https://github.com/Nelahia">Nelahia</a>
 </div>
 <div class="mono" style="font-size: 12px; color: #7C8A94">ShotNest · Swift 5.9 · SwiftUI · AppKit</div>
@@ -361,7 +361,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
   });
   var versionBadge = document.getElementById('version-badge');
   if (versionBadge) {
-    fetch('https://api.github.com/repos/Nelahia/shotkeep/releases/latest')
+    fetch('https://api.github.com/repos/Nelahia/shotnest/releases/latest')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) { if (data && data.tag_name) versionBadge.textContent = data.tag_name; })
       .catch(function () {});
@@ -410,7 +410,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
   var btn = document.getElementById('copy-brew');
   if (btn) btn.addEventListener('click', function () {
     if (!navigator.clipboard) return;
-    navigator.clipboard.writeText('brew tap nelahia/tap && brew install --cask shotkeep').then(function () {
+    navigator.clipboard.writeText('brew tap nelahia/tap && brew install --cask shotnest').then(function () {
       btn.textContent = 'Copied';
       setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
     }, function () {});
