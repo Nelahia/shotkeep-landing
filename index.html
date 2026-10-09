@@ -77,14 +77,14 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div class="disp" style="font-size: 20px">ShotKeep</div>
 </a>
-<div class="nl"><a href="#search">Search</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotkeep">GitHub</a></div>
+<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotkeep">GitHub</a></div>
 <a class="bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotkeep/releases/latest/download/ShotKeep.dmg">Download</a>
 </div>
 
-<div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 56px">
+<div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 48px">
 <div class="mono" style="font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); border-radius: 999px; padding: 6px 14px"><span id="version-badge" style="color: #35D6E6">v2.2.1</span> · signed and notarized</div>
 <h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #6F7D87">Kept.</span></h1>
-<p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotKeep sits in your menu bar and catches every screenshot macOS takes, whether full screen, selection or clipboard. Each one is filed in one folder before it touches your Desktop.</p>
+<p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotKeep sits in your menu bar and catches every screenshot macOS takes, whether full screen, selection or clipboard. Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 6px">
 <a class="bp" href="https://github.com/Nelahia/shotkeep/releases/latest/download/ShotKeep.dmg">Download ShotKeep.dmg</a>
 <a class="bs" href="#install">Install with Homebrew</a>
@@ -92,11 +92,49 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div class="mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · free and open source · no telemetry</div>
 </div>
 
-<div style="position: relative; padding: 14px; margin-bottom: 14px">
+<div id="search" style="position: relative; padding: 14px; width: 100%; max-width: 748px; box-sizing: border-box; margin: 0 auto 18px">
 <div class="cb" style="top: 0; left: 0; border-right: 0; border-bottom: 0; border-top-left-radius: 8px"></div>
 <div class="cb" style="top: 0; right: 0; border-left: 0; border-bottom: 0; border-top-right-radius: 8px"></div>
 <div class="cb" style="bottom: 0; left: 0; border-right: 0; border-top: 0; border-bottom-left-radius: 8px"></div>
 <div class="cb" style="bottom: 0; right: 0; border-left: 0; border-top: 0; border-bottom-right-radius: 8px"></div>
+<div style="width: 100%; max-width: 720px; background: #14191D; border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 30px 70px -24px rgba(0,0,0,.9); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
+<div style="height: 58px; display: flex; align-items: center; gap: 12px; padding: 0 18px; border-bottom: 1px solid rgba(255,255,255,.08)">
+<svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: none; color: #35D6E6"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
+<input class="sq" aria-label="Search screenshots" placeholder="Search screenshots" id="sp-q" spellcheck="false">
+<div class="mono" style="font-size: 12px; color: #9AA8B1; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px" id="sp-count">7</div>
+</div>
+<div style="display: flex; height: 320px">
+<div class="spl" style="min-width: 0; overflow-y: auto; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px">
+<div id="sp-rows" style="display: contents"></div>
+<div id="sp-empty" hidden style="padding: 40px 12px; text-align: center; color: #9AA8B1">No screenshot with that name</div>
+</div>
+<div class="spv">
+<div id="sp-th" class="p2" style="flex: 1; min-height: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<div class="mono" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" id="sp-file"></div>
+<div style="font-size: 12px; color: #9AA8B1" id="sp-meta"></div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 9px 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #9AA8B1">
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">↩</span>&nbsp; Copy</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘↩</span>&nbsp; Open</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘R</span>&nbsp; Reveal</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘⌫</span>&nbsp; Trash</span>
+<span style="margin-left: auto"><span class="kbd" style="font-size: 11px; padding: 1px 5px">esc</span>&nbsp; Close</span>
+</div>
+</div>
+</div>
+<div style="text-align: center; font-size: 14px; line-height: 2; color: #9AA8B1; max-width: 620px; margin: 0 auto; padding: 0 0 104px">Press <span class="kbd">⌃</span> <span class="kbd">,</span> in any app and this panel opens in the middle of your screen. Try it here: type a name, move with ↑ ↓. The shortcut can be changed in Settings.</div>
+
+<div id="popover" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 640px">
+<div class="eye">In your menu bar</div>
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Every shot, one click away.</h2>
+<p style="margin: 0; color: #9AA8B1">Click the menu bar icon to see your latest captures. Click a name to rename it, and the file in the folder is renamed with it.</p>
+</div>
+<div style="align-self: stretch">
+<div style="position: relative; padding: 14px; margin-bottom: 14px">
 <div style="background: #10161A; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
 <div style="height: 30px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: flex-end; gap: 14px; padding: 0 16px; color: #C5CFD6; font-size: 12px; font-weight: 500">
 <svg viewBox="0 0 24 24" style="width: 16px; height: 16px"><circle class="gs" cx="11" cy="11" r="6.5"></circle><path class="gs" d="M16 16l4.5 4.5"></path></svg>
@@ -195,42 +233,8 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </div>
 </div>
-<div style="text-align: center; font-size: 14px; color: #9AA8B1; padding: 8px 0 104px">Try it: click a name in the popover and type. The file in the folder is renamed with it.</div>
-
-<div id="search" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
-<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 640px">
-<div class="eye">New · quick search</div>
-<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Find any shot. From any app.</h2>
-<p style="margin: 0; color: #9AA8B1">Press <span class="kbd">⌃</span> <span class="kbd">,</span> anywhere. A search panel opens in the middle of your screen: type a name, press <span class="kbd">↩</span>, and the image is on your clipboard. Prefer another shortcut? Change it in Settings.</p>
 </div>
-<div style="width: 100%; max-width: 720px; background: #14191D; border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 30px 70px -24px rgba(0,0,0,.9); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
-<div style="height: 58px; display: flex; align-items: center; gap: 12px; padding: 0 18px; border-bottom: 1px solid rgba(255,255,255,.08)">
-<svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: none; color: #35D6E6"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
-<input class="sq" aria-label="Search screenshots" placeholder="Search screenshots" id="sp-q" spellcheck="false">
-<div class="mono" style="font-size: 12px; color: #9AA8B1; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px" id="sp-count">7</div>
-</div>
-<div style="display: flex; height: 320px">
-<div class="spl" style="min-width: 0; overflow-y: auto; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px">
-<div id="sp-rows" style="display: contents"></div>
-<div id="sp-empty" hidden style="padding: 40px 12px; text-align: center; color: #9AA8B1">No screenshot with that name</div>
-</div>
-<div class="spv">
-<div id="sp-th" class="p2" style="flex: 1; min-height: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
-<div style="display: flex; flex-direction: column; gap: 3px">
-<div class="mono" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" id="sp-file"></div>
-<div style="font-size: 12px; color: #9AA8B1" id="sp-meta"></div>
-</div>
-</div>
-</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 9px 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #9AA8B1">
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">↩</span>&nbsp; Copy</span>
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘↩</span>&nbsp; Open</span>
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘R</span>&nbsp; Reveal</span>
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘⌫</span>&nbsp; Trash</span>
-<span style="margin-left: auto"><span class="kbd" style="font-size: 11px; padding: 1px 5px">esc</span>&nbsp; Close</span>
-</div>
-</div>
-<div style="font-size: 14px; color: #9AA8B1; text-align: center">Try it: type in the panel and use ↑ ↓. Names you changed above show up here.</div>
+<div style="font-size: 14px; color: #9AA8B1; text-align: center">Try it: click a name in the popover and type. It also changes in the search panel above.</div>
 </div>
 
 <div id="shortcuts" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
