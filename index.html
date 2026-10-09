@@ -70,7 +70,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 
 <div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 56px">
-<div class="mono" style="font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); border-radius: 999px; padding: 6px 14px"><span style="color: #35D6E6">v2.1.0</span> · signed and notarized</div>
+<div class="mono" style="font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); border-radius: 999px; padding: 6px 14px"><span id="version-badge" style="color: #35D6E6">v2.2.1</span> · signed and notarized</div>
 <h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #6F7D87">Kept.</span></h1>
 <p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotKeep sits in your menu bar and catches every screenshot macOS takes, whether full screen, selection or clipboard. Each one is filed in one folder before it touches your Desktop.</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 6px">
@@ -306,6 +306,13 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
     });
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === 'Escape') input.blur(); });
   });
+  var versionBadge = document.getElementById('version-badge');
+  if (versionBadge) {
+    fetch('https://api.github.com/repos/Nelahia/shotkeep/releases/latest')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) { if (data && data.tag_name) versionBadge.textContent = data.tag_name; })
+      .catch(function () {});
+  }
   var btn = document.getElementById('copy-brew');
   if (btn) btn.addEventListener('click', function () {
     if (!navigator.clipboard) return;
