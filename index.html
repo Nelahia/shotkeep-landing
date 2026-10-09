@@ -52,6 +52,18 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 .kv{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07)}
 .kv:last-child{border-bottom:0}
 .fr{display:flex;align-items:center;gap:10px;padding:7px 12px;font-size:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.sq{flex:1;min-width:0;border:0;outline:none;background:transparent;color:#F1F5F7;font:inherit;font-size:20px}
+.sq::placeholder{color:#7C8A94}
+.srow{display:flex;align-items:center;gap:10px;width:100%;padding:6px 8px;border-radius:8px;box-sizing:border-box;text-align:left}
+.lp .srow{padding:6px 8px}
+.lp .srow:hover{background:rgba(255,255,255,.07)}
+.lp .srow.on{background:rgba(53,214,230,.2)}
+.p0{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/100% 12% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 8% 26%/52% 6% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 8% 42%/74% 6% no-repeat,#232C32}
+.p1{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/30% 100% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 62% 22%/48% 34% no-repeat,#232C32}
+.p2{background:linear-gradient(rgba(53,214,230,.22),rgba(53,214,230,.22)) 50% 50%/62% 56% no-repeat,#232C32}
+.spv{flex:1 1 280px;min-width:0;padding:16px;display:flex;flex-direction:column;gap:12px;border-left:1px solid rgba(255,255,255,.08)}
+.spl{flex:0 0 290px}
+@media(max-width:640px){.spv{display:none}.spl{flex:1 1 auto}}
 </style>
 </head>
 <body>
@@ -65,7 +77,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div class="disp" style="font-size: 20px">ShotKeep</div>
 </a>
-<div class="nl"><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotkeep">GitHub</a></div>
+<div class="nl"><a href="#search">Search</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotkeep">GitHub</a></div>
 <a class="bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotkeep/releases/latest/download/ShotKeep.dmg">Download</a>
 </div>
 
@@ -185,11 +197,47 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div style="text-align: center; font-size: 14px; color: #9AA8B1; padding: 8px 0 104px">Try it: click a name in the popover and type. The file in the folder is renamed with it.</div>
 
+<div id="search" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 640px">
+<div class="eye">New · quick search</div>
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Find any shot. From any app.</h2>
+<p style="margin: 0; color: #9AA8B1">Press <span class="kbd">⌃</span> <span class="kbd">,</span> anywhere. A search panel opens in the middle of your screen: type a name, press <span class="kbd">↩</span>, and the image is on your clipboard. Prefer another shortcut? Change it in Settings.</p>
+</div>
+<div style="width: 100%; max-width: 720px; background: #14191D; border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 30px 70px -24px rgba(0,0,0,.9); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
+<div style="height: 58px; display: flex; align-items: center; gap: 12px; padding: 0 18px; border-bottom: 1px solid rgba(255,255,255,.08)">
+<svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: none; color: #35D6E6"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
+<input class="sq" aria-label="Search screenshots" placeholder="Search screenshots" id="sp-q" spellcheck="false">
+<div class="mono" style="font-size: 12px; color: #9AA8B1; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px" id="sp-count">7</div>
+</div>
+<div style="display: flex; height: 320px">
+<div class="spl" style="min-width: 0; overflow-y: auto; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px">
+<div id="sp-rows" style="display: contents"></div>
+<div id="sp-empty" hidden style="padding: 40px 12px; text-align: center; color: #9AA8B1">No screenshot with that name</div>
+</div>
+<div class="spv">
+<div id="sp-th" class="p2" style="flex: 1; min-height: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<div class="mono" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" id="sp-file"></div>
+<div style="font-size: 12px; color: #9AA8B1" id="sp-meta"></div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 9px 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #9AA8B1">
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">↩</span>&nbsp; Copy</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘↩</span>&nbsp; Open</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘R</span>&nbsp; Reveal</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘⌫</span>&nbsp; Trash</span>
+<span style="margin-left: auto"><span class="kbd" style="font-size: 11px; padding: 1px 5px">esc</span>&nbsp; Close</span>
+</div>
+</div>
+<div style="font-size: 14px; color: #9AA8B1; text-align: center">Try it: type in the panel and use ↑ ↓. Names you changed above show up here.</div>
+</div>
+
 <div id="shortcuts" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 620px">
 <div class="eye">No new shortcuts</div>
 <h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Same keys. Different destination.</h2>
-<p style="margin: 0; color: #9AA8B1">ShotKeep watches the four shortcuts you already use and redirects the result.</p>
+<p style="margin: 0; color: #9AA8B1">ShotKeep watches the four shortcuts you already use and redirects the result. It adds one of its own for search.</p>
 </div>
 <div style="align-self: stretch; overflow-x: auto; background: #12171A; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
 <table class="tb" style="border-collapse: collapse; width: 100%; min-width: 640px; font-size: 15px">
@@ -199,6 +247,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Saves selection to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotKeep</span></td></tr>
 <tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Copies full screen to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotKeep</span></td></tr>
 <tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Copies selection to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotKeep</span></td></tr>
+<tr><td><span class="kbd">⌃</span> <span class="kbd">,</span></td><td style="color: #9AA8B1">Nothing</td><td>Opens quick search <span class="mono" style="font-size: 12px; color: #9AA8B1">· customizable</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -312,6 +361,47 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) { if (data && data.tag_name) versionBadge.textContent = data.tag_name; })
       .catch(function () {});
+  }
+  var extras = [['pricing-table-v2', 'yesterday', '7 Oct 2026 at 16:40 · file', 0], ['onboarding-step-3', '2 days ago', '6 Oct 2026 at 15:07 · from clipboard', 2], ['invoice-march', '3 days ago', '5 Oct 2026 at 10:22 · file', 0]];
+  var meta = [['12 minutes ago', '8 Oct 2026 at 14:32 · file', 2], ['3 hours ago', '8 Oct 2026 at 11:04 · from clipboard', 0], ['yesterday', '7 Oct 2026 at 22:18 · file', 1], ['yesterday', '7 Oct 2026 at 09:51 · file', 0]];
+  var q = document.getElementById('sp-q'), rows = document.getElementById('sp-rows'), sel = 0, found = [];
+  function el(tag, cls, style, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (style) e.style.cssText = style; if (text != null) e.textContent = text; return e; }
+  function renderSpot() {
+    var pool = meta.map(function (m, i) {
+      var input = document.querySelector('input.rn[data-i="' + i + '"]');
+      return [toFile(input ? input.value : '', i).replace(/\.png$/, ''), m[0], m[1], m[2]];
+    }).concat(extras);
+    var n = q.value.trim().toLowerCase();
+    found = pool.filter(function (a) { return !n || a[0].toLowerCase().indexOf(n) !== -1; });
+    sel = Math.max(0, Math.min(found.length - 1, sel));
+    rows.textContent = '';
+    found.forEach(function (a, i) {
+      var b = el('button', i === sel ? 'srow on' : 'srow'); b.type = 'button';
+      b.appendChild(el('div', 'p' + a[3], 'width:52px;height:39px;flex:none;border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)'));
+      var t = el('div', '', 'min-width:0;display:flex;flex-direction:column;gap:2px');
+      t.appendChild(el('div', '', 'font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis', a[0]));
+      t.appendChild(el('div', 'mono', 'font-size:11px;color:#9AA8B1', a[1]));
+      b.appendChild(t);
+      b.addEventListener('click', function () { sel = i; renderSpot(); });
+      rows.appendChild(b);
+    });
+    var cur = found[sel];
+    document.getElementById('sp-empty').hidden = found.length > 0;
+    document.getElementById('sp-count').textContent = found.length;
+    document.getElementById('sp-th').className = cur ? 'p' + cur[3] : '';
+    document.getElementById('sp-file').textContent = cur ? cur[0] + '.png' : '';
+    document.getElementById('sp-meta').textContent = cur ? cur[2] : '';
+    var on = rows.querySelector('.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest' });
+  }
+  if (q && rows) {
+    q.addEventListener('input', function () { sel = 0; renderSpot(); });
+    q.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); sel++; renderSpot(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); sel--; renderSpot(); }
+      else if (e.key === 'Escape') { q.value = ''; sel = 0; renderSpot(); }
+    });
+    document.querySelectorAll('input.rn').forEach(function (input) { input.addEventListener('input', renderSpot); });
+    renderSpot();
   }
   var btn = document.getElementById('copy-brew');
   if (btn) btn.addEventListener('click', function () {
