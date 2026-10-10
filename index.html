@@ -77,7 +77,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div class="disp" style="font-size: 20px">ShotCubby</div>
 </a>
-<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotcubby">GitHub</a></div>
+<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a></div>
 <a class="bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download</a>
 </div>
 
@@ -87,9 +87,8 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotCubby sits in your menu bar and catches every screenshot macOS takes, whether full screen, selection or clipboard. Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 6px">
 <a class="bp" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download ShotCubby.dmg</a>
-<a class="bs" href="#install">Install with Homebrew</a>
 </div>
-<div class="mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · free and open source · no telemetry</div>
+<div class="mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · no telemetry</div>
 </div>
 
 <div id="search" style="position: relative; padding: 14px; width: 100%; max-width: 748px; box-sizing: border-box; margin: 0 auto 18px">
@@ -317,26 +316,18 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div id="install" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 96px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
 <div class="eye">Install</div>
-<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Free. Open source. Yours.</h2>
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Free. Yours.</h2>
 <p style="margin: 0; color: #9AA8B1">No account, no subscription. Download it and it's installed.</p>
 </div>
 <div class="card" style="width: 100%; max-width: 460px; box-sizing: border-box; gap: 14px; padding: 28px">
-<div style="display: flex; align-items: baseline; gap: 10px"><div class="disp" style="font-size: 44px">$0</div><div style="color: #9AA8B1; font-size: 14px">forever, MIT licensed</div></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><div class="disp" style="font-size: 44px">$0</div><div style="color: #9AA8B1; font-size: 14px">forever</div></div>
 <a class="bp" style="height: 48px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download ShotCubby.dmg</a>
-<div class="mono" style="font-size: 12px; color: #7C8A94; text-align: center">or with Homebrew</div>
-<div style="display: flex; align-items: center; gap: 10px; background: #0A0D0F; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); padding: 6px 6px 6px 14px">
-<div class="mono" style="flex: 1; min-width: 0; font-size: 12px; overflow-x: auto; white-space: nowrap; padding: 6px 0">brew tap nelahia/tap &amp;&amp; brew install --cask shotcubby</div>
-<button id="copy-brew" type="button" style="height: 36px; padding: 0 12px; border-radius: 7px; background: rgba(255,255,255,.1); font-size: 13px; font-weight: 600; flex: none">Copy</button>
-</div>
 <div class="mono" style="font-size: 12px; color: #7C8A94; text-align: center">Requires macOS 14.0 (Sonoma) or later</div>
 </div>
 </div>
 
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #9AA8B1">
 <div style="display: flex; flex-wrap: wrap; gap: 8px 22px">
-<a href="https://github.com/Nelahia/shotcubby">GitHub</a>
-<a href="https://github.com/Nelahia/shotcubby/releases">Releases</a>
-<a href="https://github.com/Nelahia/shotcubby/blob/main/README.md#license">MIT License</a>
 <a href="https://github.com/Nelahia">Nelahia</a>
 </div>
 <div class="mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Swift 5.9 · SwiftUI · AppKit</div>
@@ -407,14 +398,6 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
     document.querySelectorAll('input.rn').forEach(function (input) { input.addEventListener('input', renderSpot); });
     renderSpot();
   }
-  var btn = document.getElementById('copy-brew');
-  if (btn) btn.addEventListener('click', function () {
-    if (!navigator.clipboard) return;
-    navigator.clipboard.writeText('brew tap nelahia/tap && brew install --cask shotcubby').then(function () {
-      btn.textContent = 'Copied';
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
-    }, function () {});
-  });
 })();
 </script>
 </body>
